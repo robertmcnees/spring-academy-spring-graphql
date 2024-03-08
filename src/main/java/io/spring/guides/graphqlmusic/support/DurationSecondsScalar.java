@@ -11,7 +11,6 @@ import graphql.schema.CoercingParseValueException;
 import graphql.schema.CoercingSerializeException;
 import graphql.schema.GraphQLScalarType;
 
-import static graphql.scalars.util.Kit.typeName;
 
 public final class DurationSecondsScalar {
 
@@ -30,7 +29,7 @@ public final class DurationSecondsScalar {
                     return Duration.ofSeconds(Long.parseLong(aString)).toSeconds();
                 } else {
                     throw new CoercingSerializeException(
-                            "Expected a 'Long' or 'java.time.Duration' but was '" + typeName(input) + "'."
+                            "Expected a 'Long' or 'java.time.Duration'."
                     );
                 }
             }
@@ -43,7 +42,7 @@ public final class DurationSecondsScalar {
                     return Duration.ofSeconds(Long.parseLong(aString));
                 } else {
                     throw new CoercingParseValueException(
-                            "Expected a 'Long' or 'java.time.Duration' but was '" + typeName(input) + "'."
+                            "Expected a 'Long' or 'java.time.Duration'."
                     );
                 }
             }
@@ -54,7 +53,7 @@ public final class DurationSecondsScalar {
                     return Duration.ofSeconds(intValue.getValue().longValue());
                 }
                 throw new CoercingParseLiteralException(
-                        "Expected AST type 'StringValue' but was '" + typeName(input) + "'."
+                        "Expected AST type 'StringValue' but was ''."
                 );
             }
 

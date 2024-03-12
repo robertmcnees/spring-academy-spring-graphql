@@ -1,0 +1,38 @@
+type Query {
+    """
+    Get a particular Album by its ID.
+    """
+    album(id: ID!): Album
+}
+
+"""
+An Album.
+"""
+type Album {
+    id: ID!
+    "The Album title."
+    title: String!
+    "The list of music genres for this Album."
+    genres: [String]
+    "The list of Artists who authored this Album."
+    artists: [Artist]
+
+    # Add release date field
+
+    "The EAN for this Album."
+    ean: String
+}
+
+"""
+Person or group featured on a Track, or authored an Album.
+"""
+type Artist {
+    id: ID!
+    "The Artist name."
+    name: String
+    "The Albums this Artist authored."
+    albums: [Album]
+}
+
+
+# Add scalars for Date, Url, and Duration

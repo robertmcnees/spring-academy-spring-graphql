@@ -16,9 +16,8 @@ type Album {
     genres: [String]
     "The list of Artists who authored this Album."
     artists: [Artist]
-
-    # Add release date field
-
+	"The release date for this Album."
+	releaseDate: Date
     "The EAN for this Album."
     ean: String
 }
@@ -34,5 +33,11 @@ type Artist {
     albums: [Album]
 }
 
+scalar Date @specifiedBy(url:"https://tools.ietf.org/html/rfc3339")
 
-# Add scalars for Date, Url, and Duration
+scalar Url @specifiedBy(url:"https://www.w3.org/Addressing/URL/url-spec.txt")
+
+"""
+A duration, in seconds.
+"""
+scalar Duration

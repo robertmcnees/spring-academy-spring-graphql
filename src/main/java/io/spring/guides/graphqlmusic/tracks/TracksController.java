@@ -19,12 +19,13 @@ public class TracksController {
 		this.mongoTemplate = mongoTemplate;
 	}
 
-	//Add GraphQL QueryMapping endpoint
 	@QueryMapping
 	public Optional<Album> album(@Argument String id) {
 		return this.mongoTemplate.query(Album.class)
 				.matching(query(where("id").is(id)))
 				.first();
 	}
+
+	// add endpoint to fetch track information for a given album
 
 }

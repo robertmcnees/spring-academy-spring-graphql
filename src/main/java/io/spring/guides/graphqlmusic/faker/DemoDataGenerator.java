@@ -52,11 +52,19 @@ public class DemoDataGenerator {
         }
     }
 
+    public Playlist createFavoritePlaylist(String authorName, List<Album> albums) {
+        return createPlaylist("Favorites", authorName, albums);
+    }
+
     public Playlist createPlaylist(String authorName, List<Album> albums) {
+        return createPlaylist(this.faker.playlist().playlistName(), authorName, albums);
+    }
+
+    private Playlist createPlaylist(String playlistName, String authorName, List<Album> albums) {
         Set<String> trackIds = new HashSet<>();
         Integer trackCount = this.faker.random().nextInt(15, 30);
         int albumCount = albums.size();
-        Playlist playList = new Playlist(this.faker.playlist().playlistName(), authorName);
+        Playlist playList = new Playlist(playlistName, authorName);
         for (int i = 0; i< trackCount; i++) {
             int randomAlbumIndex = this.faker.random().nextInt(albumCount);
             Album randomAlbum = albums.get(randomAlbumIndex);

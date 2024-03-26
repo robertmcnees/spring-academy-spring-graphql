@@ -39,10 +39,10 @@ public class DemoDataRunner implements ApplicationRunner {
         List.of(Track.class, Artist.class, Album.class, Playlist.class)
                 .forEach(this.mongoTemplate::dropCollection);
         createMongoDbIndexFor(Track.class);
+        createMongoDbIndexFor(Playlist.class);
 
         int artistCount = 5;
         int albumsPerArtist = 3;
-        int playlistCount = 5;
         List<Album> albums = new ArrayList<>();
         for (int i = 0; i < artistCount; i++) {
             Artist newArtist = this.mongoTemplate.save(this.demoDataGenerator.createArtist());
@@ -57,10 +57,8 @@ public class DemoDataRunner implements ApplicationRunner {
         }
 
         List<Playlist> playlists = new ArrayList<>();
-        for (int i = 0; i < playlistCount; i++) {
-            playlists.add(this.demoDataGenerator.createPlaylist("rstoyanchev", albums));
-            playlists.add(this.demoDataGenerator.createPlaylist("bclozel", albums));
-        }
+        playlists.add(this.demoDataGenerator.createFavoritePlaylist("rstoyanchev", albums));
+        playlists.add(this.demoDataGenerator.createFavoritePlaylist("bclozel", albums));
         this.mongoTemplate.insertAll(playlists)
                 .forEach(playlist -> logger.info(playlist.toString()));
     }

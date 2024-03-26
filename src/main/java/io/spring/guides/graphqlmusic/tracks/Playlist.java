@@ -1,11 +1,14 @@
 package io.spring.guides.graphqlmusic.tracks;
 
+import org.springframework.data.mongodb.core.index.CompoundIndex;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Document
+@CompoundIndex(def = "{'name': 1, 'author': 1}", unique = true)
 public class Playlist {
 
     private String id;
@@ -50,6 +53,19 @@ public class Playlist {
             this.trackIds = new HashSet<>();
         }
         this.trackIds.add(track.getId());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Playlist playlist = (Playlist) o;
+        return Objects.equals(id, playlist.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
     }
 
     @Override

@@ -3,7 +3,12 @@ type Query {
     Get a particular Album by its ID.
     """
     album(id: ID!): Album
+
+    # Add favorite playlist query
+
 }
+
+# Add Playlist type
 
 """
 An Album.

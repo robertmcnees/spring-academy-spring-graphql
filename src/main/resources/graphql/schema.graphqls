@@ -16,10 +16,27 @@ type Album {
     genres: [String]
     "The list of Artists who authored this Album."
     artists: [Artist]
-	"The release date for this Album."
-	releaseDate: Date
+    "The release date for this Album."
+    releaseDate: Date
     "The EAN for this Album."
     ean: String
+    "The collection of Tracks this Album is made of."
+    tracks: [Track]
+}
+
+"""
+A song in a particular Album.
+"""
+type Track {
+ id: ID!
+ "The track number in the corresponding Album."
+ number: Int
+ "The track title."
+ title: String!
+ "The track duration."
+ duration: Duration
+ "Average user rating for this Track."
+ rating: Int
 }
 
 """

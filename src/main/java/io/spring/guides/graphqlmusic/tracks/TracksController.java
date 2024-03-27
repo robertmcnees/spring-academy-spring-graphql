@@ -17,8 +17,11 @@ public class TracksController {
 
 	private final MongoTemplate mongoTemplate;
 
-	public TracksController(MongoTemplate mongoTemplate) {
+	private final TrackRepository trackRepository;
+
+	public TracksController(MongoTemplate mongoTemplate, TrackRepository trackRepository) {
 		this.mongoTemplate = mongoTemplate;
+		this.trackRepository = trackRepository;
 	}
 
 	@QueryMapping
@@ -28,6 +31,8 @@ public class TracksController {
 				.first();
 	}
 
-	// add endpoint to fetch track information for a given album
-
+	@SchemaMapping
+	public List<Track> tracks(Album album) {
+		return this.trackRepository.findByAlbumIdOrderByNumber(album.getId());
+	}
 }

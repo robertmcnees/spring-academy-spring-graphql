@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface TrackRepository extends MongoRepository<Track, String> {
 
-	// add album and order by id
+	List<Track> findByAlbumIdOrderByNumber(String albumId);
 }

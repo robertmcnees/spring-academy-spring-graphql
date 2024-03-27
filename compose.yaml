@@ -7,3 +7,7 @@ services:
       - 'MONGO_INITDB_ROOT_USERNAME=root'
     ports:
       - '27017'
+  zipkin:
+    image: 'openzipkin/zipkin:latest'
+    ports:
+      - '9411:9411'
